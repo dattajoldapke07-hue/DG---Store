@@ -1,0 +1,56 @@
+<script>
+// ================= WISHLIST =================
+let wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+function addToWishlistDynamic(productText){
+    if(!wishlist.includes(productText)){
+        wishlist.push(productText);
+        localStorage.setItem("wishlist", JSON.stringify(wishlist));
+        alert("Added to Wishlist ❤️");
+    } else {
+        alert("Already in Wishlist!");
+    }
+}
+
+// ================= AUTO BUTTON ADD =================
+window.addEventListener("load", function(){
+
+    // 👉 सभी "Add to Cart" ढूंढो और उनके पास Wishlist button add करो
+    let buttons = document.querySelectorAll("button");
+
+    buttons.forEach(btn => {
+        if(btn.innerText.toLowerCase().includes("add to cart")){
+            
+            let wishlistBtn = document.createElement("button");
+            wishlistBtn.innerText = "❤️ Wishlist";
+            wishlistBtn.style.marginLeft = "5px";
+
+            wishlistBtn.onclick = function(){
+                let product = btn.parentElement.innerText;
+                addToWishlistDynamic(product);
+            };
+
+            btn.parentElement.appendChild(wishlistBtn);
+        }
+    });
+
+    // ================= ADMIN BUTTON =================
+    let adminBtn = document.createElement("button");
+    adminBtn.innerText = "⚙️ Admin";
+    adminBtn.style.marginLeft = "10px";
+
+    adminBtn.onclick = function(){
+        let password = prompt("Enter Admin Password:");
+        if(password === "admin123"){
+            window.location.href = "admin.html";
+        } else {
+            alert("Wrong Password!");
+        }
+    };
+
+    // 👉 navbar या body में add
+    let nav = document.querySelector("nav") || document.body;
+    nav.appendChild(adminBtn);
+
+});
+</script>
