@@ -1,0 +1,69 @@
+:root { 
+    --primary: #6366f1; 
+    --dark: #0f172a; 
+    --accent: #f43f5e;
+    --surface: #ffffff;
+    --bg: #f8fafc;
+    --text-main: #1e293b;
+    --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+* { box-sizing: border-box; font-family: 'Outfit', sans-serif; -webkit-tap-highlight-color: transparent; }
+body { margin: 0; background: var(--bg); color: var(--text-main); scroll-behavior: smooth; overflow-x: hidden; }
+.hidden { display: none !important; }
+
+header { 
+    background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(12px);
+    padding: 15px 20px; border-bottom: 1px solid #eee;
+    position: sticky; top: 0; z-index: 1000;
+    display: flex; flex-direction: column; align-items: center;
+}
+
+.logo { font-weight: 800; font-size: 1.4rem; background: linear-gradient(to right, var(--primary), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+.search-container {
+    width: 100%; max-width: 400px; position: relative; margin: 12px 0;
+}
+.search-container input {
+    width: 100%; padding: 10px 15px 10px 40px; border-radius: 12px; border: 1px solid #e2e8f0; background: #fff;
+}
+.search-container i {
+    position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #94a3b8;
+}
+
+.nav-buttons { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+.btn { background: #fff; border: 1px solid #ddd; padding: 8px 12px; border-radius: 10px; cursor: pointer; font-size: 0.8rem; font-weight: 600; display: flex; align-items: center; gap: 5px; }
+.btn-cart { background: var(--dark); color: white; border: none; }
+
+.cat-scroll { display: flex; overflow-x: auto; gap: 20px; padding: 15px; background: #fff; scrollbar-width: none; }
+.cat-item { text-align: center; min-width: 65px; }
+.cat-item img { width: 50px; height: 50px; border-radius: 15px; object-fit: cover; box-shadow: var(--shadow); }
+.cat-item span { font-size: 0.7rem; font-weight: 600; display: block; margin-top: 5px; }
+
+#products { display: grid; gap: 15px; padding: 15px; grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 768px) { #products { grid-template-columns: repeat(4, 1fr); } }
+
+.product { position: relative; background: #fff; border-radius: 15px; overflow: hidden; border: 1px solid #f1f5f9; transition: 0.3s; }
+.product:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+.product img { width: 100%; height: 160px; object-fit: cover; }
+
+.wish-icon { position: absolute; top: 10px; right: 10px; background: #fff; padding: 6px; border-radius: 50%; color: #ddd; cursor: pointer; z-index: 5; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+.wish-icon.active { color: var(--accent); }
+
+.p-info { padding: 12px; }
+.p-name { font-size: 0.85rem; height: 2.5em; overflow: hidden; margin: 0; }
+.p-price { color: var(--primary); font-size: 1rem; display: block; margin: 5px 0; }
+.add-btn { width: 100%; border: none; background: #f1f5f9; padding: 8px; border-radius: 8px; font-weight: 700; cursor: pointer; }
+
+.sidebar { position: fixed; top: 0; right: -100%; width: 85%; max-width: 350px; height: 100%; background: #fff; z-index: 2000; transition: 0.3s; display: flex; flex-direction: column; }
+.sidebar.open { right: 0; box-shadow: -10px 0 30px rgba(0,0,0,0.1); }
+.sb-head { padding: 20px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; }
+
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 3000; }
+.modal-content { background: #fff; width: 90%; max-width: 450px; padding: 20px; border-radius: 20px; max-height: 90vh; overflow-y: auto; }
+
+input, textarea { width: 100%; padding: 12px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 10px; background: #f9f9f9; }
+.pay-option.active { border-color: var(--primary); background: #eef2ff; color: var(--primary); }
+
+.success-check { color: #10b981; font-size: 3rem; margin-bottom: 10px; animation: scaleUp 0.5s ease; }
+@keyframes scaleUp { from {transform: scale(0);} to {transform: scale(1);} }
